@@ -1,0 +1,38 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html ng-app="phonecatApp"> <!-- ROOT SCOPE -->
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body ng-controller="PhoneListCtrl">
+        <div>
+           Search: <input ng-model="query">
+        </div>
+        <br/>
+        <div>
+            Sort by:
+            <select ng-model="orderProp">
+                <option value="name">Alphabetical</option>
+                <option value="age">Newest</option>
+            </select>
+        </div>
+        <div>
+            <h4>Total number of phones: {{(phones|filter:query|orderBy:orderProp).length}}</h4>
+        </div>
+        <div>
+            <ul>
+                <li ng-repeat="phone in phones | filter:query | orderBy:orderProp"> <!-- phone user defined variable, phones returned scope variable. -->
+                    <span>{{phone.name}}</span>
+                    <p>{{phone.snippet}}</p>
+                </li>
+            </ul>
+        </div>
+        
+        <script src="js/angular.min.js"></script>
+        <script src="js/controllers.js"></script>
+    </body>
+</html>
